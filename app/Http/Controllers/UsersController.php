@@ -4,84 +4,65 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use mysql_xdevapi\CollectionModify;
+
 
 class UsersController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
+        $users = User::all();
 
+        return view('users.index', compact('users'));
+    }
 
-        $users=User::all();
+    public function create()
+    {
+        return view('users.create');
 
-        return view('users.index',compact('users')); }
-
-        public function create(){
-
-            return view ('users.create');
-
-        }
-
-        public function store(Request $request){
-
-        $this->validate($request,[
-
-            'name'=>'required' ,
-
-
+    }
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
         ]);
 
     }
 
-    public function show($id){
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
 
-        $user=User::findOrFail($id);
+        return view('users.show', compact('user'));
 
-        return view ('users.show',compact('user'));
+    }
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
 
+        return view('users.edit', compact('user'));
 
     }
 
-    public function edit($id){
-
-        $user=User::findOrFail($id);
-
-        return view('users.edit',compact('user'));
-
-
-    }
-
-    public function update(Request $request,string $id){
+    public function update(Request $request, string $id)
+    {
         $user = User::findOrFail($id);
 
         $user->update($request->all());
 
         return redirect('users');
-
-
-
-
     }
 
-    public function destroy(string $id){
-
-        $user=User::findOrFail($id);
+    public function destroy(string $id)
+    {
+        $user = User::findOrFail($id);
 
         $user->delete();
 
         return redirect('/users');
 
 
-
-
     }
-
-
-
-
-
-
-
 
 
     //

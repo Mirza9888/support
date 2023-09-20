@@ -23,4 +23,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::resource('users',UsersController::class);
+//Route::resource('users',UsersController::class);
+
+Route::group(['prefix'=>'users'],function(){
+
+    Route::get('/',[UsersController::class,'index'])->name('users.index');
+
+});
