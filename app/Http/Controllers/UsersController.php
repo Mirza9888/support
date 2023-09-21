@@ -50,7 +50,7 @@ class UsersController extends Controller
 
         $user->update($request->all());
 
-        return redirect('users');
+        return redirect('/users');
     }
 
     public function destroy(string $id)

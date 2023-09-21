@@ -35,12 +35,6 @@
                     <li>
                         <a href="{{ route('users.index') }}">Users</a>
                     </li>
-                    <ul class="" >
-                    <li>
-                        <a href="{{route('users.create')}}">Add users</a>
-                    </li>
-                </ul>
-
                 </ul>
             </div>
 

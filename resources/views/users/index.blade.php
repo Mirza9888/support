@@ -12,8 +12,6 @@
                         <th scope="col">email</th>
                         <th scope="col">Admin</th>
                         <th scope="col">Actions</th>
-
-
                     </tr>
                     </thead>
                     <tbody>
@@ -23,7 +21,10 @@
                             <td>{{$user -> name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->is_admin}}</td>
-                            <td>-</td>
+                            <td>
+                                <a href="{{route('users.update',$user->id)}}" class="btn btn-primary">Edit</a>
+                                <a href="{{route('users.destroy',$user->id)}}" class="btn btn-primary">Delete</a>
+                            </td>
                         </tr>
                 @endforeach
                     </tbody>
