@@ -1,24 +1,21 @@
 @extends('layouts.app')
 @section('content')
-    <form class="row g-3">
-        <div class="container">
-        <div class="col-md-6">
-        <div class="col-md-6">
+    <div class="container">
+        <form method="POST"
+              action="{{ isset($user) ?   route('users.update',$user->id) :route ('users.create',$user->id)}}">
+            @csrf
+            @method('PUT')
             <div class="col-md-6">
                 <label for="name" class="form-label">Name</label>
-                <input type="name" class="form-control">
-
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control">
+                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name}}">
             </div>
-        </div>
-        </div>
-        <div class="col-md-6">
-            <button type="submit" class="btn btn-primary">Update user</button>
-        </div>
-        </div>
-    </form>
-
-
+            <div class="cold-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email"
+                       value="{{ isset ($user) ? $user->email:''}}">
+            </div>
+            <button type="submit" class="btn btn-primary">{{ isset($user) ? 'Update User' : 'Add User' }}</button>
+        </form>
+    </div>
 
 @endsection
